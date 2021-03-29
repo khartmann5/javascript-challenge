@@ -69,7 +69,7 @@ const runEnter = () => {
 			tbody.append("tr").append("td").text("No sightings on this date");
 		}
 	}
-    if(inputCity) {
+    else if(inputCity) {
 		// Filter the data
 		var filteredData = tableData.filter(UFO => UFO.city === inputCity);
 	
@@ -101,7 +101,7 @@ const runEnter = () => {
 			tbody.append("tr").append("td").text("No sightings for this State");
 		}
 	}
-    if(inputCountry) {
+    else if(inputCountry) {
 		// Filter the data
 		var filteredData = tableData.filter(UFO => UFO.city === inputCountry);
 	
@@ -117,7 +117,7 @@ const runEnter = () => {
 			tbody.append("tr").append("td").text("No sightings for this Country");
 		}
 	}
-    if(inputShape) {
+    else if(inputShape) {
 		// Filter the data
 		var filteredData = tableData.filter(UFO => UFO.city === inputShape);
 	
