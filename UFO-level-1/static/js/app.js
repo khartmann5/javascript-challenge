@@ -22,22 +22,20 @@ function showtable(tableData){
 // write to html
 showtable(tableData);
 
-// Complete the event handler function for the form
+// // Complete the event handler function for the form
 var button = d3.select("#filter-btn");
-button.on("click", function(){
+button.on("click", function() {
+    // tbody.html("");
     d3.event.preventDefault();
-    var inputElement = d3.select("datetime"),
-        inputValue = inputElement.property("value");
-    var filterDate = tableData.filter(tableData => tableData.datetime === inputValue);
-
-    tbody.html("");
-
+    var inputElement = d3.select("#datetime");
+    var inputValue = inputElement.property("value");
+    console.log(inputValue);
+    var filterDate = tableData.filter(UFO => UFO.datetime === inputValue);
+    console.log(filterDate);
     let response = {
         filterDate
     }
-
     if(response.filterDate.length !== 0) {
-        showtable(filterDate)
+        showtable(filterDate);
     }
-        else {tbody.append("tr").append("td").text("No sightings on this date.")}
 });
