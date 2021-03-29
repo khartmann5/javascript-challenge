@@ -32,14 +32,24 @@ const runEnter = () => {
     d3.event.preventDefault();
     var inputElement = d3.select("#datetime");
     var inputValue = inputElement.property("value");
-    console.log(inputValue);
+    // console.log(inputValue);
     var filterDate = tableData.filter(UFO => UFO.datetime === inputValue);
-    console.log(filterDate);
+    // console.log(filterDate);
     let response = {
         filterDate
     }
     if(response.filterDate.length !== 0) {
         showtable(filterDate);
+    }
+    var inputCity = d3.select("#city");
+    var inputCity1 = inputCity.property("value");
+    console.log(inputCity1);
+    var filterCity = tableData.filter(UFO => UFO.city === inputValue);
+    let response = {
+        filterCity
+    }
+    if(response.filterCity.length !== 0) {
+        showtable(filterCity);
     }
 };
 
