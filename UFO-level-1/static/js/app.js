@@ -22,10 +22,13 @@ function showtable(tableData){
 // write to html
 showtable(tableData);
 
-// // Complete the event handler function for the form
+// Select the button
+// Select the form
 var button = d3.select("#filter-btn");
-button.on("click", function() {
-    // tbody.html("");
+var form = d3.select("#form");
+
+// Complete the event handler function for the form
+const runEnter = () => {
     d3.event.preventDefault();
     var inputElement = d3.select("#datetime");
     var inputValue = inputElement.property("value");
@@ -38,4 +41,8 @@ button.on("click", function() {
     if(response.filterDate.length !== 0) {
         showtable(filterDate);
     }
-});
+};
+
+// Create event handlers
+button.on("click",runEnter);
+form.on("submit",runEnter);
