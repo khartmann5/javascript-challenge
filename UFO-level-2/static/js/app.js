@@ -1,6 +1,7 @@
 // from data.js
 // Assign the data from `data.js` to a descriptive variable
 var tableData = data;
+const tbody = d3.select("tbody");
 
 // Console.log the UFO data from data.js
 // console.log(data);
@@ -8,7 +9,6 @@ var tableData = data;
 // Use d3 to update each cell's text with
 // UFO report values (Date, City, State, Country, Shape, Duration, Comments)
 function showtable(tableData){
-    const tbody = d3.select("tbody");
     tbody.html("");
     tableData.forEach(UFO => {
         let row = tbody.append("tr");
@@ -22,36 +22,63 @@ function showtable(tableData){
 // write to html
 showtable(tableData);
 
-// Select the button
-// Select the form
+// Select the button and form
 var button = d3.select("#filter-btn");
 var form = d3.select("#form");
 
+// Create references to input
+var inputFieldDate = d3.select("#datetime");
+var inputFieldCity = d3.select("#city-input");
+var inputFieldState = d3.select("#state-input");
+var inputFieldCountry = d3.select("#country-input");
+var inputFieldShape = d3.select("#shape-input");
+
+
 // Complete the event handler function for the form
 const runEnter = () => {
+
+    // Prevent the page from refreshing
     d3.event.preventDefault();
-    var inputElement = d3.select("#datetime");
-    var inputValue = inputElement.property("value");
-    // console.log(inputValue);
-    var filterDate = tableData.filter(UFO => UFO.datetime === inputValue);
-    // console.log(filterDate);
-    let response = {
-        filterDate
-    }
-    if(response.filterDate.length !== 0) {
-        showtable(filterDate);
-    }
-    var inputCity = d3.select("#city");
-    var inputCity1 = inputCity.property("value");
-    console.log(inputCity1);
-    var filterCity = tableData.filter(UFO => UFO.city === inputValue);
-    let response = {
-        filterCity
-    }
-    if(response.filterCity.length !== 0) {
-        showtable(filterCity);
-    }
+
+    // Get the value property of the input element
+    var inputDate = inputFieldDate.property("value");
+    var inputCity = inputFieldCity.property("value").toLowerCase();
+    var inputState = inputFieldState.property("value").toLowerCase();
+    var inputCountry = inputFieldCountry.property("value").toLowerCase();
+    var inputShape = inputFieldShape.property("value").toLowerCase();
+
+    console.log(inputDate);
+    console.log(inputCity);
+    console.log(inputState);
+    console.log(inputCountry);
+    console.log(inputShape);
+    
+    if(inputDate){
+		// 2. Filter the data
+		var filteredData = tableData.filter(UFO => UFO.datetime === inputDate);
+	
+		// 3. Load the new data
+		if(filteredData.length !== 0) {
+			showtable(filteredData);
+		}
+		else {
+			// Clear out the previously loaded HTML:
+			tbody.html("");
+			
+			// Tell them "No rows match"
+			tbody.append("tr").append("td").text("No sightings on this date");
+		}
+	}
+
+    // let response = {
+    //     filteredData
+    // }
+    // if(response.filteredData.length !== 0) {
+    //     showtable(filteredData);
+    // }
 };
+
+
 
 // Create event handlers
 button.on("click",runEnter);
