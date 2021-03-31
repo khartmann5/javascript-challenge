@@ -24,7 +24,8 @@ showtable(tableData);
 
 // Select the button and form
 var button = d3.select("#filter-btn");
-var form = d3.select("#form");
+// var form = d3.select("#form");
+
 
 // Create references to input
 var inputFieldDate = d3.select("#datetime");
@@ -53,89 +54,29 @@ const runEnter = () => {
     console.log(inputCountry);
     console.log(inputShape);
 
+	// copy data to new variable	
 	let tempdata = JSON.parse(JSON.stringify(tableData));
 
-
-    
+	// filter data based on input
     if(inputDate){
 		// Filter the data
 		tempdata = tempdata.filter(UFO => UFO.datetime === inputDate);
-	
-		// // Load the new data
-		// if(filteredData.length !== 0) {
-		// 	showtable(filteredData);
-		// }
-		// else {
-		// 	// Clear out the previously loaded HTML:
-		// 	tbody.html("");
-			
-		// 	// Tell them "No rows match"
-		// 	tbody.append("tr").append("td").text("No sightings on this date");
-		// }
 	}
     if(inputCity) {
 		// Filter the data
 		tempdata = tempdata.filter(UFO => UFO.city === inputCity);
-	
-		// // Load the new data
-		// if(filteredData.length !== 0) {
-		// 	showtable(filteredData);
-		// }
-		// else {
-		// 	// Clear out the previously loaded HTML:
-		// 	tbody.html("");
-			
-		// 	// Tell them "No rows match"
-		// 	tbody.append("tr").append("td").text("No sightings for this City");
-		// }
 	}
     if(inputState) {
 		// Filter the data
 		tempdata = tempdata.filter(UFO => UFO.state === inputState);
-	
-		// // Load the new data
-		// if(filteredData.length !== 0) {
-		// 	showtable(filteredData);
-		// }
-		// else {
-		// 	// Clear out the previously loaded HTML:
-		// 	tbody.html("");
-			
-		// 	// Tell them "No rows match"
-		// 	tbody.append("tr").append("td").text("No sightings for this State");
-		// }
 	}
     if(inputCountry) {
 		// Filter the data
 		tempdata = tempdata.filter(UFO => UFO.country === inputCountry);
-	
-		// // Load the new data
-		// if(filteredData.length !== 0) {
-		// 	showtable(filteredData);
-		// }
-		// else {
-		// 	// Clear out the previously loaded HTML:
-		// 	tbody.html("");
-			
-		// 	// Tell them "No rows match"
-		// 	tbody.append("tr").append("td").text("No sightings for this Country");
-		// }
 	}
     if(inputShape) {
 		// Filter the data
 		tempdata = tempdata.filter(UFO => UFO.shape === inputShape);
-	
-		// // Load the new data
-		// if(filteredData.length !== 0) {
-		// 	showtable(filteredData);
-		// }
-		// else {
-		// 	// Clear out the previously loaded HTML:
-		// 	tbody.html("");
-			
-		// 	// Tell them "No rows match"
-		// 	tbody.append("tr").append("td").text("No sightings for that Shape");
-		// }
 	}
     
 	// Load the new data
@@ -156,4 +97,7 @@ const runEnter = () => {
 
 // Create event handlers
 button.on("click",runEnter);
-form.on("submit",runEnter);
+// form.on("submit",runEnter);
+
+d3.selectAll(".form-control").on("change",runEnter);
+
