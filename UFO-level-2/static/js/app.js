@@ -24,8 +24,6 @@ showtable(tableData);
 
 // Select the button and form
 var button = d3.select("#filter-btn");
-// var form = d3.select("#form");
-
 
 // Create references to input
 var inputFieldDate = d3.select("#datetime");
@@ -93,11 +91,8 @@ const runEnter = () => {
 
 };
 
-
-
 // Create event handlers
 button.on("click",runEnter);
-// form.on("submit",runEnter);
 
 d3.selectAll(".form-control").on("change",runEnter);
 
