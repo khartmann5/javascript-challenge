@@ -52,88 +52,104 @@ const runEnter = () => {
     console.log(inputState);
     console.log(inputCountry);
     console.log(inputShape);
+
+	let tempdata = JSON.parse(JSON.stringify(tableData));
+
+
     
     if(inputDate){
 		// Filter the data
-		var filteredData = tableData.filter(UFO => UFO.datetime === inputDate);
+		tempdata = tempdata.filter(UFO => UFO.datetime === inputDate);
 	
-		// Load the new data
-		if(filteredData.length !== 0) {
-			showtable(filteredData);
-		}
-		else {
-			// Clear out the previously loaded HTML:
-			tbody.html("");
+		// // Load the new data
+		// if(filteredData.length !== 0) {
+		// 	showtable(filteredData);
+		// }
+		// else {
+		// 	// Clear out the previously loaded HTML:
+		// 	tbody.html("");
 			
-			// Tell them "No rows match"
-			tbody.append("tr").append("td").text("No sightings on this date");
-		}
+		// 	// Tell them "No rows match"
+		// 	tbody.append("tr").append("td").text("No sightings on this date");
+		// }
 	}
-    else if(inputCity) {
+    if(inputCity) {
 		// Filter the data
-		var filteredData = tableData.filter(UFO => UFO.city === inputCity);
+		tempdata = tempdata.filter(UFO => UFO.city === inputCity);
 	
-		// Load the new data
-		if(filteredData.length !== 0) {
-			showtable(filteredData);
-		}
-		else {
-			// Clear out the previously loaded HTML:
-			tbody.html("");
+		// // Load the new data
+		// if(filteredData.length !== 0) {
+		// 	showtable(filteredData);
+		// }
+		// else {
+		// 	// Clear out the previously loaded HTML:
+		// 	tbody.html("");
 			
-			// Tell them "No rows match"
-			tbody.append("tr").append("td").text("No sightings for this City");
-		}
+		// 	// Tell them "No rows match"
+		// 	tbody.append("tr").append("td").text("No sightings for this City");
+		// }
 	}
-    else if(inputState) {
+    if(inputState) {
 		// Filter the data
-		var filteredData = tableData.filter(UFO => UFO.city === inputState);
+		tempdata = tempdata.filter(UFO => UFO.state === inputState);
 	
-		// Load the new data
-		if(filteredData.length !== 0) {
-			showtable(filteredData);
-		}
-		else {
-			// Clear out the previously loaded HTML:
-			tbody.html("");
+		// // Load the new data
+		// if(filteredData.length !== 0) {
+		// 	showtable(filteredData);
+		// }
+		// else {
+		// 	// Clear out the previously loaded HTML:
+		// 	tbody.html("");
 			
-			// Tell them "No rows match"
-			tbody.append("tr").append("td").text("No sightings for this State");
-		}
+		// 	// Tell them "No rows match"
+		// 	tbody.append("tr").append("td").text("No sightings for this State");
+		// }
 	}
-    else if(inputCountry) {
+    if(inputCountry) {
 		// Filter the data
-		var filteredData = tableData.filter(UFO => UFO.city === inputCountry);
+		tempdata = tempdata.filter(UFO => UFO.country === inputCountry);
 	
-		// Load the new data
-		if(filteredData.length !== 0) {
-			showtable(filteredData);
-		}
-		else {
-			// Clear out the previously loaded HTML:
-			tbody.html("");
+		// // Load the new data
+		// if(filteredData.length !== 0) {
+		// 	showtable(filteredData);
+		// }
+		// else {
+		// 	// Clear out the previously loaded HTML:
+		// 	tbody.html("");
 			
-			// Tell them "No rows match"
-			tbody.append("tr").append("td").text("No sightings for this Country");
-		}
+		// 	// Tell them "No rows match"
+		// 	tbody.append("tr").append("td").text("No sightings for this Country");
+		// }
 	}
-    else if(inputShape) {
+    if(inputShape) {
 		// Filter the data
-		var filteredData = tableData.filter(UFO => UFO.city === inputShape);
+		tempdata = tempdata.filter(UFO => UFO.shape === inputShape);
 	
-		// Load the new data
-		if(filteredData.length !== 0) {
-			showtable(filteredData);
-		}
-		else {
-			// Clear out the previously loaded HTML:
-			tbody.html("");
+		// // Load the new data
+		// if(filteredData.length !== 0) {
+		// 	showtable(filteredData);
+		// }
+		// else {
+		// 	// Clear out the previously loaded HTML:
+		// 	tbody.html("");
 			
-			// Tell them "No rows match"
-			tbody.append("tr").append("td").text("No sightings for that Shape");
-		}
+		// 	// Tell them "No rows match"
+		// 	tbody.append("tr").append("td").text("No sightings for that Shape");
+		// }
 	}
     
+	// Load the new data
+	if(tempdata.length !== 0) {
+		showtable(tempdata);
+	}
+	else {
+		// Clear out the previously loaded HTML:
+		tbody.html("");
+
+		// Tell them "No rows match"
+		tbody.append("tr").append("td").text("No sightings!");
+	}
+
 };
 
 
